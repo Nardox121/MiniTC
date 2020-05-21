@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="MiniTC.TCPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MiniTC"
+             
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Path" HorizontalAlignment="Right" Margin="5,5,0,0" />
+            <TextBlock TextWrapping="Wrap"  Grid.Column="1" x:Name="textBox" x:FieldModifier="private" Margin="10,10,0,6" Text=
+              "{
+                Binding Path=Path,
+                Mode=OneWay,
+                UpdateSourceTrigger=PropertyChanged, 
+                RelativeSource={
+                                RelativeSource Mode=FindAncestor, 
+                                AncestorType={x:Type UserControl}
+                               }
+                }"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Drive" HorizontalAlignment="Right" Margin="0,5,0,6"/>
+            <ComboBox x:Name="comboBox" x:FieldModifier="private" Grid.Column="1" Margin="10,5,0,6" ItemsSource="{
+                Binding Path=Disks,  
+                UpdateSourceTrigger=PropertyChanged, 
+                RelativeSource={
+                                RelativeSource Mode=FindAncestor, 
+                                AncestorType={x:Type UserControl}
+                               }
+                }" SelectedItem="{
+                Binding Path=SelectedDisk,   
+                UpdateSourceTrigger=PropertyChanged, 
+                RelativeSource={
+                                RelativeSource Mode=FindAncestor, 
+                                AncestorType={x:Type UserControl}
+                               }
+                }"/>
+        </Grid>
+        <ListBox x:Name="listBox" Grid.Row="2" Grid.Column="0" Margin="20,0,20,0"  ItemsSource="{
+                Binding Path=Files,  
+                UpdateSourceTrigger=PropertyChanged, 
+                RelativeSource={
+                                RelativeSource Mode=FindAncestor, 
+                                AncestorType={x:Type UserControl}
+                               }
+                }" SelectedItem="{
+                Binding Path=SelectedFile,
+                UpdateSourceTrigger=PropertyChanged, 
+                RelativeSource={
+                                RelativeSource Mode=FindAncestor, 
+                                AncestorType={x:Type UserControl}
+                               }
+            }" MouseDoubleClick="MClick"/>
+    </Grid>
+</UserControl>
