@@ -6,7 +6,7 @@ using System;
 namespace MiniTC.ViewModel
 {
     using Model;
-    using Base;
+    using Base;//comm
 
     internal class TCOperator : ViewModelBase
     {
